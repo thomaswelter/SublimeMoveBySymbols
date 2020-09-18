@@ -16,8 +16,8 @@ else:
 symbolCache = {}
 
 class MoveBySymbolsEventListener(sublime_plugin.EventListener):
-	def on_modified_async(self, view):
-		del symbolCache[view.id()]
+    def on_modified_async(self, view):
+        del symbolCache[view.id()]
 
 class MoveBySymbolsCommand(sublime_plugin.TextCommand):
 
@@ -48,9 +48,9 @@ class MoveBySymbolsCommand(sublime_plugin.TextCommand):
         # cache symbols to improve performance in large files
         viewId = self.view.id()
         if viewId not in symbolCache:
-	        symbolCache[viewId] = self.find_symbols(symbol_selector)
+            symbolCache[viewId] = self.find_symbols(symbol_selector)
 
-       	symbols = symbolCache[viewId]
+        symbols = symbolCache[viewId]
 
         self.do_move(symbols, forward, extend, force_single_selection)
 
