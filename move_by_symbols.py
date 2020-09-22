@@ -17,7 +17,8 @@ symbolCache = {}
 
 class MoveBySymbolsEventListener(sublime_plugin.EventListener):
     def on_modified_async(self, view):
-        del symbolCache[view.id()]
+        if view.id() in symbolCache:
+            del symbolCache[view.id()]
 
 class MoveBySymbolsCommand(sublime_plugin.TextCommand):
 
