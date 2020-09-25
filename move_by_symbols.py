@@ -17,12 +17,8 @@ symbolCache = {}
 
 # remove symbol cache on edit or on close
 class MoveBySymbolsEventListener(sublime_plugin.EventListener):
-    def on_modified_async(self, view):
-        if ST3 and view.id() in symbolCache:
-            del symbolCache[view.id()]
-
-    def on_modifies(self, view):
-        if ST3 and view.id() in symbolCache:
+    def on_modified(self, view):
+        if view.id() in symbolCache:
             del symbolCache[view.id()]
 
     def on_close(self, view):
